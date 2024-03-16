@@ -68,6 +68,36 @@ pub async fn rmfile<'js>(ctx: Ctx<'js>, path: String, options: Opt<Object<'js>>)
     Ok(())
 }
 
+pub fn rmfile_sync<'js>(_ctx: Ctx<'js>, path: String, options: Opt<Object<'js>>) -> Result<()> {
+    let mut recursive = false;
+    let mut force = false;
+
+    if let Some(options) = options.0 {
+        recursive = options.get("recursive").unwrap_or_default();
+        force = options.get("force").unwrap_or_default();
+    }
+
+    let res = (|| -> Result<()> {
+        let is_dir = std::fs::metadata(&path).map(|metadata| metadata.is_dir())?;
+
+        (if is_dir && recursive {
+            std::fs::remove_dir_all(&path)
+        } else if is_dir && !recursive {
+            std::fs::remove_dir(&path)
+        } else {
+            std::fs::remove_file(&path)
+        })?;
+
+        Ok(())
+    })();
+
+    if !force {
+        return res;
+    }
+
+    Ok(())
+}
+
 fn get_params(options: Opt<Object>) -> bool {
     let mut recursive = false;
 
