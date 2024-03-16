@@ -244,6 +244,21 @@ describe("writeFile", () => {
   });
 });
 
+describe("writeFile synchronously", () => {
+  it("should write a file", () => {
+    const tmpDir = defaultFsImport.mkdtempSync(path.join(os.tmpdir(), "test-"));
+    const filePath = path.join(tmpDir, "test");
+    const fileContents = "hello";
+    defaultFsImport.writeFileSync(filePath, fileContents);
+
+    const contents = defaultFsImport.readFileSync(filePath).toString();
+
+    expect(fileContents).toEqual(contents);
+
+    defaultFsImport.rmdirSync(tmpDir, { recursive: true });
+  });
+});
+
 describe("rm", () => {
   it("should delete file and directory", async () => {
     const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "test-"));
@@ -257,14 +272,14 @@ describe("rm", () => {
     // Should delete file
     await fs.rm(filePath, { recursive: true });
     await expect(fs.access(filePath)).rejects.toThrow(
-        /[Nn]o such file or directory/
+      /[Nn]o such file or directory/
     );
 
     // Check dir still exists and then delete it
     await fs.access(tmpDir);
     await fs.rm(tmpDir, { recursive: true });
     await expect(fs.access(filePath)).rejects.toThrow(
-        /[Nn]o such file or directory/
+      /[Nn]o such file or directory/
     );
   });
   it("should throw an error if file does not exists", async () => {
@@ -280,7 +295,7 @@ describe("rm", () => {
     const filePath = path.join(tmpDir, "test");
 
     await expect(fs.access(filePath)).rejects.toThrow(
-        /[Nn]o such file or directory/
+      /[Nn]o such file or directory/
     );
 
     // Should not throw an exception since it does not exists
@@ -340,12 +355,16 @@ describe("access", () => {
 
   it("should throw if not proper permissions", async () => {
     const filePath = "fixtures/hello.txt";
-    await expect(fs.access(filePath, fs.constants.X_OK)).rejects.toThrow(/[pP]ermission denied/);
+    await expect(fs.access(filePath, fs.constants.X_OK)).rejects.toThrow(
+      /[pP]ermission denied/
+    );
   });
 
   it("should throw if not exists", async () => {
     const filePath = "fixtures/nothing";
-    await expect(fs.access(filePath)).rejects.toThrow(/[nN]o such file or directory/);
+    await expect(fs.access(filePath)).rejects.toThrow(
+      /[nN]o such file or directory/
+    );
   });
 
   it("should access a file using default import", async () => {
