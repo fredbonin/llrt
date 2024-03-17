@@ -164,16 +164,13 @@ describe("mkdtemp", () => {
 });
 
 describe("mkdtempSync", () => {
-  it("should create a temporary directory with a given prefix synchronously", async () => {
+  it("should create a temporary directory with a given prefix synchronously",  () => {
     // Create a temporary directory with the given prefix
     const prefix = "test-";
     const dirPath = defaultFsImport.mkdtempSync(path.join(os.tmpdir(), prefix));
 
     // Check that the directory exists
-    const dirExists = await fs
-      .stat(dirPath)
-      .then(() => true)
-      .catch(() => false);
+    const dirExists =  defaultFsImport.statSync(dirPath)
     expect(dirExists).toBeTruthy();
 
     // Check that the directory has the correct prefix
@@ -181,7 +178,7 @@ describe("mkdtempSync", () => {
     expect(dirPrefix).toStrictEqual(prefix);
 
     // Clean up the temporary directory
-    await defaultFsImport.rmdirSync(dirPath);
+    defaultFsImport.rmdirSync(dirPath);
   });
 });
 
@@ -207,7 +204,7 @@ describe("mkdir", () => {
 });
 
 describe("mkdirSync", () => {
-  it("should create a directory with the given path synchronously", async () => {
+  it("should create a directory with the given path synchronously", () => {
     const dirPath = defaultFsImport.mkdtempSync(
       path.join(os.tmpdir(), "test/test-")
     );
@@ -218,10 +215,7 @@ describe("mkdirSync", () => {
     defaultFsImport.mkdirSync(dirPath, { recursive: true });
 
     // Check that the directory exists
-    const dirExists = await fs
-      .stat(dirPath)
-      .then(() => true)
-      .catch(() => false);
+    const dirExists = defaultFsImport.statSync(dirPath)
     expect(dirExists).toBeTruthy();
 
     // Clean up the directory
