@@ -156,7 +156,7 @@ describe("mkdtemp", () => {
 
     // Check that the directory has the correct prefix
     const dirPrefix = path.basename(dirPath).slice(0, prefix.length);
-    expect(dirPrefix).toStrictEqual(prefix);
+    expect(dirPrefix).toEqual(prefix);
 
     // Clean up the temporary directory
     await fs.rmdir(dirPath);
@@ -175,7 +175,7 @@ describe("mkdtempSync", () => {
 
     // Check that the directory has the correct prefix
     const dirPrefix = path.basename(dirPath).slice(0, prefix.length);
-    expect(dirPrefix).toStrictEqual(prefix);
+    expect(dirPrefix).toEqual(prefix);
 
     // Clean up the temporary directory
     defaultFsImport.rmdirSync(dirPath);

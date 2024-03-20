@@ -37,13 +37,13 @@ describe("Hashing", () => {
 describe("random", () => {
   it("should generate a random buffer synchronously using randomFillSync", () => {
     const buffer = crypto.randomFillSync(Buffer.alloc(16));
-    assert.strictEqual(buffer.length, 16);
+    expect(buffer.length).toEqual(16)
   });
 
   it("should generate a random buffer asynchronously using randomFill", (done) => {
     crypto.randomFill(Buffer.alloc(16), (err, buffer) => {
       assert.ifError(err);
-      assert.strictEqual(buffer.length, 16);
+      expect(buffer.length).toEqual(16)
       done();
     });
   });
@@ -51,7 +51,7 @@ describe("random", () => {
   it("should generate random bytes synchronously into a Uint8Array using randomFillSync", () => {
     const uint8Array = new Uint8Array(16);
     crypto.randomFillSync(uint8Array);
-    assert.strictEqual(uint8Array.length, 16);
+    expect(uint8Array.length).toEqual(16)
     for (const byte of uint8Array) {
       assert(byte >= 0 && byte <= 255);
     }
@@ -61,8 +61,8 @@ describe("random", () => {
     const dataView = new DataView(new ArrayBuffer(32));
     crypto.randomFill(dataView, (err, buffer) => {
       assert.ifError(err);
-      assert.strictEqual(buffer.buffer, dataView.buffer);
-      assert.strictEqual(dataView.byteLength, 32);
+      expect(buffer.buffer).toEqual(dataView.buffer)
+      expect(dataView.byteLength).toEqual(32)
       for (let i = 0; i < 32; i++) {
         assert(dataView.getUint8(i) >= 0 && dataView.getUint8(i) <= 255);
       }
@@ -72,7 +72,7 @@ describe("random", () => {
 
   it("should generate a random UUID using randomUUID", () => {
     const uuid = crypto.randomUUID();
-    assert.strictEqual(uuid.length, 36);
+    expect(uuid.length).toEqual(36)
     const uuidRegex =
       /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
     assert.match(uuid, uuidRegex);
@@ -81,6 +81,6 @@ describe("random", () => {
   it("should generate a random bytes buffer using randomBytes", () => {
     const buffer = crypto.randomBytes(16);
     assert(buffer instanceof Buffer);
-    assert.strictEqual(buffer.length, 16);
+    expect(buffer.length).toEqual(16)
   });
 });

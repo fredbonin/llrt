@@ -139,7 +139,7 @@ describe("JSON Stringified", () => {
         }
     }
 }`;
-    assert.strictEqual(jsonString, expectedJsonString);
+    expect(jsonString).toEqual(expectedJsonString)
   });
 
   // Test JSON stringifying with custom spacing as a string
@@ -175,7 +175,7 @@ describe("JSON Stringified", () => {
       }
    }
 }`;
-    assert.strictEqual(jsonString, expectedJsonString);
+    expect(jsonString).toEqual(expectedJsonString)
   });
 
   // Test JSON stringifying with replacer as a function
@@ -184,7 +184,7 @@ describe("JSON Stringified", () => {
     const replacerFunction = (key: string, value: any) =>
       key === "secret" ? undefined : value;
     const jsonString = JSON.stringify(data, replacerFunction, 2);
-    assert.strictEqual(jsonString, '{\n  "key": "value"\n}');
+    expect(jsonString).toEqual('{\n  "key": "value"\n}')
   });
 
   // Test more complex JSON structure
@@ -217,6 +217,6 @@ describe("JSON Stringified", () => {
     }
 }`;
 
-    assert.strictEqual(jsonString, expectedJsonString);
+    expect(jsonString).toEqual(expectedJsonString)
   });
 });

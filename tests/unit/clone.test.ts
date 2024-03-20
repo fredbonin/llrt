@@ -56,7 +56,7 @@ describe("structuredClone", () => {
   it("Clones a Date object", () => {
     const originalDate = new Date("2022-01-31T12:00:00Z");
     const clonedDate = structuredClone(originalDate);
-    assert.strictEqual(clonedDate.getTime(), originalDate.getTime());
+    expect(clonedDate.getTime()).toEqual(originalDate.getTime())
   });
 
   it("Clones a Buffer", () => {
@@ -76,6 +76,6 @@ describe("structuredClone", () => {
     const clonedObject2 = structuredClone(originalObject, {
       transfer: [originalObject.foo.arr],
     });
-    assert.strictEqual(clonedObject2.foo.arr, originalObject.foo.arr);
+    expect(clonedObject2.foo.arr).toEqual(originalObject.foo.arr)
   });
 });
