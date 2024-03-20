@@ -108,10 +108,10 @@ describe("path.parse", () => {
       ext: ".gz",
       name: "baz.tar",
     };
-    assert.deepStrictEqual(path.parse(pathStr1), pathObj1);
-    assert.deepStrictEqual(path.parse(pathStr2), pathObj2);
-    assert.deepStrictEqual(path.parse(pathStr3), pathObj3);
-    assert.deepStrictEqual(path.parse(pathStr4), pathObj4);
+    expect(path.parse(pathStr1)).toStrictEqual(pathObj1)
+    expect(path.parse(pathStr2)).toStrictEqual(pathObj2)
+    expect(path.parse(pathStr3)).toStrictEqual(pathObj3)
+    expect(path.parse(pathStr4)).toStrictEqual(pathObj4)
   });
 });
 

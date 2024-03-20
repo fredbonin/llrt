@@ -33,11 +33,11 @@ describe("Headers", () => {
     const h = new Headers(headers);
     const iterator = h.entries();
     let next = iterator.next();
-    assert.deepStrictEqual(next.value, ["authorization", "Bearer 1234"]);
+    expect(next.value).toStrictEqual(["authorization", "Bearer 1234"])
     next = iterator.next();
-    assert.deepStrictEqual(next.value, ["content-type", "application/json"]);
+    expect(next.value).toStrictEqual(["content-type", "application/json"])
     next = iterator.next();
-    assert.deepStrictEqual(next.value, undefined);
+    expect(next.value).toStrictEqual(undefined)
   });
 
   it("should iterate over the headers with forEach", () => {
@@ -46,8 +46,8 @@ describe("Headers", () => {
     };
     const h = new Headers(headers);
     h.forEach((value, key) => {
-      assert.deepStrictEqual(key, "content-type");
-      assert.deepStrictEqual(value, "application/json");
+      expect(key).toStrictEqual("content-type")
+      expect(value).toStrictEqual("application/json")
     });
   });
 });
@@ -80,7 +80,7 @@ describe("Request", () => {
     const headers = { "Content-Type": "application/json" };
     const headerValue = new Headers(headers);
     const request = new Request("https://example.com", { headers });
-    assert.deepStrictEqual(request.headers, headerValue);
+    expect(request.headers).toStrictEqual(headerValue)
   });
 
   it("should set the body to null by default", () => {
@@ -94,7 +94,7 @@ describe("Request", () => {
       body,
       method: "POST",
     });
-    assert.deepStrictEqual(request.body, body);
+    expect(request.body).toStrictEqual(body)
   });
 
   it("should set the body to a Blob if a Blob is provided", async () => {
@@ -103,10 +103,7 @@ describe("Request", () => {
       body: blob,
       method: "POST",
     });
-    assert.deepStrictEqual(
-      request.body,
-      new Uint8Array(await blob.arrayBuffer())
-    );
+    expect(request.body).toStrictEqual(new Uint8Array(await blob.arrayBuffer()))
   });
 
   it("should accept another request object as argument", () => {
@@ -144,16 +141,13 @@ describe("Response class", () => {
     const headers = new Headers({ "Content-Type": "application/json" });
     const response = new Response(null, { headers });
 
-    assert.deepStrictEqual(
-      response.headers.get("Content-Type"),
-      "application/json"
-    );
+    expect(response.headers.get("Content-Type")).toStrictEqual("application/json")
   });
 
   it("should set the body to the provided value", async () => {
     const body = "Hello, world!";
     const response = new Response(body);
-    assert.deepStrictEqual(await response.text(), body);
+    expect(await response.text()).toStrictEqual(body)
   });
 
   it("should set the body to a Blob if a Blob is provided", async () => {
@@ -169,7 +163,7 @@ describe("Response class", () => {
       headers: { "Content-Type": "application/json" },
     });
     return response.json().then((parsedJson) => {
-      assert.deepStrictEqual(parsedJson, jsonBody);
+      expect(parsedJson).toStrictEqual(jsonBody)
     });
   });
 

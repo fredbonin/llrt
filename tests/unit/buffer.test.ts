@@ -31,7 +31,7 @@ describe("Buffer.alloc", () => {
     const fillBuffer = Buffer.from([1, 2, 3]);
     const buffer = Buffer.alloc(size, fillBuffer);
 
-    assert.deepStrictEqual(buffer, Buffer.from([1, 2, 3, 1, 2, 3]));
+    expect(buffer).toStrictEqual(Buffer.from([1, 2, 3, 1, 2, 3]))
   });
 
   it("should create a buffer with specified size and fill with a Uint8Array value", () => {
@@ -39,7 +39,7 @@ describe("Buffer.alloc", () => {
     const fillUint8Array = new Uint8Array([5, 10, 15]);
     const buffer = Buffer.alloc(size, fillUint8Array);
 
-    assert.deepStrictEqual(buffer, Buffer.from([5, 10, 15, 5, 10]));
+    expect(buffer).toStrictEqual(Buffer.from([5, 10, 15, 5, 10]))
   });
 
   it("should create a buffer with specified size and fill with an integer value", () => {

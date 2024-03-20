@@ -9,7 +9,7 @@ describe("XMLParser options and handling", () => {
     };
     const parser = new XMLParser();
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult);
   });
 
   it("should apply attributeValueProcessor", () => {
@@ -25,7 +25,7 @@ describe("XMLParser options and handling", () => {
       attributeValueProcessor: (_, val) => val.toUpperCase(),
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should apply tagValueProcessor", () => {
@@ -39,7 +39,7 @@ describe("XMLParser options and handling", () => {
       tagValueProcessor: (_, val) => val.toUpperCase(),
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it('should handle attributeNamePrefix with default "@"', () => {
@@ -55,7 +55,7 @@ describe("XMLParser options and handling", () => {
       ignoreAttributes: false,
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should handle custom attributeNamePrefix", () => {
@@ -72,7 +72,7 @@ describe("XMLParser options and handling", () => {
       ignoreAttributes: false,
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should handle siblings with the same tag name as an array", () => {
@@ -85,7 +85,7 @@ describe("XMLParser options and handling", () => {
     };
     const parser = new XMLParser();
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should handle empty tag attributes", () => {
@@ -99,7 +99,7 @@ describe("XMLParser options and handling", () => {
     };
     const parser = new XMLParser({ ignoreAttributes: false });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should handle attributes and text content for sibling arrays", () => {
@@ -117,7 +117,7 @@ describe("XMLParser options and handling", () => {
       ignoreAttributes: false,
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should handle attributes and text content for sibling arrays for empty tags", () => {
@@ -130,7 +130,7 @@ describe("XMLParser options and handling", () => {
       ignoreAttributes: false,
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should handle empty child tags", () => {
@@ -142,7 +142,7 @@ describe("XMLParser options and handling", () => {
       ignoreAttributes: false,
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 
   it("should handle attributes and text content for sibling arrays", () => {
@@ -155,7 +155,7 @@ describe("XMLParser options and handling", () => {
       ignoreAttributes: false,
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
   it("should handle attributes and text content for different objects and siblings", () => {
     const xmlString =
@@ -170,7 +170,7 @@ describe("XMLParser options and handling", () => {
       ignoreAttributes: false,
     });
     const result = parser.parse(xmlString);
-    assert.deepStrictEqual(result, expectedResult);
+    expect(result).toStrictEqual(expectedResult)
   });
 });
 

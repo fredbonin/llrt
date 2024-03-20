@@ -3,7 +3,7 @@ describe("structuredClone", () => {
     const originalObject = { foo: "bar", num: 42 };
     const clonedObject = structuredClone(originalObject);
 
-    assert.deepStrictEqual(clonedObject, originalObject);
+    expect(clonedObject).toStrictEqual(originalObject)
     originalObject.foo += "extra";
     assert.notDeepStrictEqual(clonedObject, originalObject);
   });
@@ -11,21 +11,21 @@ describe("structuredClone", () => {
   it("Clones an array", () => {
     const originalArray = [1, 2, 3, 4, 5];
     const clonedArray = structuredClone(originalArray);
-    assert.deepStrictEqual(clonedArray, originalArray);
+    expect(clonedArray).toStrictEqual(originalArray)
   });
 
   it("Clones an array of objects", () => {
     let obj = { foo: "bar" };
     const originalArray = [obj, obj, obj, obj, obj];
     const clonedArray = structuredClone(originalArray);
-    assert.deepStrictEqual(clonedArray, originalArray);
+    expect(clonedArray).toStrictEqual(originalArray)
     assert.notEqual(clonedArray[0], originalArray[0]);
   });
 
   it("Clones nested objects", () => {
     const originalObject = { foo: { bar: { baz: "qux" } } };
     const clonedObject = structuredClone(originalObject);
-    assert.deepStrictEqual(clonedObject, originalObject);
+    expect(clonedObject).toStrictEqual(originalObject)
   });
 
   it("Handles circular references", () => {
@@ -35,7 +35,7 @@ describe("structuredClone", () => {
     originalObject.foo.circularRef3 = originalObject.foo;
     originalObject.ref2 = originalObject;
     const clonedObject = structuredClone(originalObject);
-    assert.deepStrictEqual(clonedObject, originalObject);
+    expect(clonedObject).toStrictEqual(originalObject)
   });
 
   it("Clones a Map", () => {
@@ -44,13 +44,13 @@ describe("structuredClone", () => {
       ["key2", "value2"],
     ]);
     const clonedMap = structuredClone(originalMap);
-    assert.deepStrictEqual(clonedMap, originalMap);
+    expect(clonedMap).toStrictEqual(originalMap)
   });
 
   it("Clones a Set", () => {
     const originalSet = new Set([1, 2, 3, 4, 5]);
     const clonedSet = structuredClone(originalSet);
-    assert.deepStrictEqual(clonedSet, originalSet);
+    expect(clonedSet).toStrictEqual(originalSet)
   });
 
   it("Clones a Date object", () => {

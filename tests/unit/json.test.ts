@@ -1,7 +1,7 @@
 describe("JSON Parsing", () => {
   it("should parse valid JSON", () => {
     const parsedData = JSON.parse('{"key": "value"}');
-    assert.deepStrictEqual(parsedData, { key: "value" });
+    expect(parsedData).toStrictEqual({ key: "value" })
   });
 
   it("should handle invalid JSON", () => {
@@ -20,42 +20,32 @@ describe("JSON Parsing", () => {
     const parsedData = JSON.parse(
       '{"name": "John", "age": 25, "address": {"city": "New York", "zip": "10001"}}'
     );
-    assert.deepStrictEqual(parsedData, {
-      name: "John",
-      age: 25,
-      address: { city: "New York", zip: "10001" },
-    });
+    expect(parsedData).toStrictEqual({name: "John", age: 25, address: { city: "New York", zip: "10001" },})
   });
 
   it("should parse JSON with arrays", () => {
     const parsedData = JSON.parse('[1, 2, 3, {"key": "value"}]');
-    assert.deepStrictEqual(parsedData, [1, 2, 3, { key: "value" }]);
+    expect(parsedData).toStrictEqual([1, 2, 3, { key: "value" }])
   });
 
   it("should parse JSON with boolean values", () => {
     const parsedData = JSON.parse('{"isTrue": true, "isFalse": false}');
-    assert.deepStrictEqual(parsedData, { isTrue: true, isFalse: false });
+    expect(parsedData).toStrictEqual({ isTrue: true, isFalse: false })
   });
 
   it("should parse JSON with null values", () => {
     const parsedData = JSON.parse('{"nullableValue": null}');
-    assert.deepStrictEqual(parsedData, { nullableValue: null });
+    expect(parsedData).toStrictEqual({ nullableValue: null })
   });
 
   it("should parse JSON with large int value", () => {
     const parsedData = JSON.parse('{"bigInt": 888888888888888888}');
-    assert.deepStrictEqual(parsedData, {
-      bigInt: 888888888888888888,
-    });
-  });
+    expect(parsedData).toStrictEqual({bigInt: 888888888888888888,})});
 
   it("should parse JSON with special characters", () => {
     const specialChars = "!@#$%^&*()_+-={}[]|;:,.<>?/";
     const parsedData = JSON.parse(`{"specialChars": "${specialChars}"}`);
-    assert.deepStrictEqual(parsedData, {
-      specialChars,
-    });
-  });
+    expect(parsedData).toStrictEqual({specialChars,})});
 });
 
 describe("JSON Stringified", () => {
@@ -63,7 +53,7 @@ describe("JSON Stringified", () => {
     const data = { key: "value", age: 25 };
     const jsonString = JSON.stringify(data);
     const parsedData = JSON.parse(jsonString);
-    assert.deepStrictEqual(parsedData, data);
+    expect(parsedData).toStrictEqual(data)
   });
 
   it("should handle toJSON method on regular objects", () => {
@@ -76,7 +66,7 @@ describe("JSON Stringified", () => {
     };
 
     const parsedData = JSON.parse(JSON.stringify(objWithToJSON));
-    assert.deepStrictEqual(parsedData, { customKey: "VALUE", customAge: 50 });
+    expect(parsedData).toStrictEqual({ customKey: "VALUE", customAge: 50 })
   });
 
   it("should print floats without fractions as integers", () => {
