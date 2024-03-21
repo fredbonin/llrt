@@ -5,7 +5,7 @@ describe("structuredClone", () => {
 
     expect(clonedObject).toStrictEqual(originalObject)
     originalObject.foo += "extra";
-    assert.notDeepStrictEqual(clonedObject, originalObject);
+    expect(clonedObject).not.toStrictEqual(originalObject);
   });
 
   it("Clones an array", () => {
@@ -64,7 +64,7 @@ describe("structuredClone", () => {
     const clonedBuffer = structuredClone(buffer);
     expect(clonedBuffer.buffer).toEqual(buffer.buffer)
     buffer.set([1, 2, 3, 4, 5, 6, 7, 8]);
-    assert.notDeepStrictEqual(clonedBuffer, buffer);
+    expect(clonedBuffer).not.toStrictEqual(buffer);
   });
 
   it("Handles transfer list", () => {
