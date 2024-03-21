@@ -71,14 +71,14 @@ describe("JSON Stringified", () => {
 
   it("should print floats without fractions as integers", () => {
     const jsonString = JSON.stringify({ value: 1.0 });
-    assert.equal(jsonString, '{"value":1}');
+    expect(jsonString).toEqual('{"value":1}')
   });
 
   it("should print very large numbers as floats with scientific notation", () => {
     const jsonString = JSON.stringify({
       value: 999999999999999999999999999999,
     });
-    assert.equal(jsonString, '{"value":1e30}');
+    expect(jsonString).toEqual('{"value":1e30}')
   });
 
   it("should stringify and parse recursive JSON with self-referencing structures", () => {

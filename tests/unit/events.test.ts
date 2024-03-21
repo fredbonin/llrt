@@ -14,8 +14,8 @@ it("should use custom EventEmitter", () => {
   const myEmitter2 = new MyEmitter();
 
   myEmitter.once("event", function (a, b) {
-    assert.equal(a, "a");
-    assert.equal(b, "b");
+    expect(a).toEqual("a")
+    expect(b).toEqual("b")
     // @ts-ignore
     assert.ok(this instanceof MyEmitter);
     // @ts-ignore
@@ -34,7 +34,7 @@ it("should use custom EventEmitter", () => {
   myEmitter.emit(symbolB);
   myEmitter.emit(symbolC);
 
-  assert.equal(called, 4);
+  expect(called).toEqual(4)
   assert.deepEqual(myEmitter.eventNames(), [symbolA, symbolB, symbolC]);
 
   myEmitter.off(symbolB, callback);
@@ -44,7 +44,7 @@ it("should use custom EventEmitter", () => {
   myEmitter.emit(symbolB);
   myEmitter.emit(symbolC);
 
-  assert.equal(called, 6);
+  expect(called).toEqual(6)
   assert.deepEqual(myEmitter.eventNames(), [symbolA, symbolC]);
 });
 

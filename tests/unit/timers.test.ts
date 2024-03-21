@@ -35,7 +35,7 @@ describe("timers", () => {
     const end = Date.now();
 
     assert.ok(end - start >= 10);
-    assert.equal(status, "cleared");
+    expect(status).toEqual("cleared")
   });
 
   it("should set interval", async () => {
@@ -52,7 +52,7 @@ describe("timers", () => {
     });
     const end = Date.now();
     assert.ok(end - start >= 10);
-    assert.equal(count, 5);
+    expect(count).toEqual(5)
   });
 
   it("should clear interval", async () => {
@@ -70,10 +70,10 @@ describe("timers", () => {
     });
     const end = Date.now();
     assert.ok(end - start > 10);
-    assert.equal(count, 2);
+    expect(count).toEqual(2)
   });
 
   it("should import timers", () => {
-    assert.equal(timers.setTimeout, setTimeout);
+    expect(timers.setTimeout).toEqual(setTimeout)
   });
 });

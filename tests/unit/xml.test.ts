@@ -178,19 +178,19 @@ describe("XML Builder", () => {
   it("Can create XmlText with escaped values", () => {
     let xml = new XmlText("<john>doe</john>").toString();
 
-    assert.equal(xml, "&lt;john&gt;doe&lt;/john&gt;");
+    expect(xml).toEqual("&lt;john&gt;doe&lt;/john&gt;")
   });
 
   it("Can build XML with empty tag", () => {
     let xml = new XmlNode("data").toString();
 
-    assert.equal(xml, "<data/>");
+    expect(xml).toEqual("<data/>")
   });
 
   it("Can build XML with child", () => {
     let xml = new XmlNode("data", ["example"]).toString();
 
-    assert.equal(xml, "<data>example</data>");
+    expect(xml).toEqual("<data>example</data>")
   });
 
   it("Can build XML with nested child", () => {
@@ -201,10 +201,7 @@ describe("XML Builder", () => {
     xml.addChildNode(node);
     node.addChildNode(node2);
 
-    assert.equal(
-      xml.toString(),
-      "<root>example<expression>foo<expression>bar</expression></expression></root>"
-    );
+    expect(xml.toString()).toEqual("<root>example<expression>foo<expression>bar</expression></expression></root>")
   });
 
   it("Can build XML with deeply nested child", () => {
@@ -216,10 +213,7 @@ describe("XML Builder", () => {
     node.addChildNode(node2);
     node2.addChildNode(node3);
 
-    assert.equal(
-      xml.toString(),
-      "<root><level1><level2><level3>foobar</level3></level2></level1></root>"
-    );
+    expect(xml.toString()).toEqual("<root><level1><level2><level3>foobar</level3></level2></level1></root>")
   });
 
   it("Can build XML with attributes", () => {
@@ -229,6 +223,6 @@ describe("XML Builder", () => {
       .addAttribute("example3", "data3")
       .removeAttribute("example3");
 
-    assert.equal(xml.toString(), '<root example="data" example2="data2"/>');
+    expect(xml.toString()).toEqual('<root example="data" example2="data2"/>')
   });
 });
