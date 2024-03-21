@@ -35,7 +35,7 @@ it("should use custom EventEmitter", () => {
   myEmitter.emit(symbolC);
 
   expect(called).toEqual(4)
-  assert.deepEqual(myEmitter.eventNames(), [symbolA, symbolB, symbolC]);
+  expect(myEmitter.eventNames()).toEqual([symbolA, symbolB, symbolC])
 
   myEmitter.off(symbolB, callback);
 
@@ -45,7 +45,7 @@ it("should use custom EventEmitter", () => {
   myEmitter.emit(symbolC);
 
   expect(called).toEqual(6)
-  assert.deepEqual(myEmitter.eventNames(), [symbolA, symbolC]);
+  expect(myEmitter.eventNames()).toEqual([symbolA, symbolC])
 });
 
 it("should prepend event listeners", async () => {

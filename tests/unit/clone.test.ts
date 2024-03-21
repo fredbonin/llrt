@@ -62,7 +62,7 @@ describe("structuredClone", () => {
   it("Clones a Buffer", () => {
     const buffer = Buffer.from("hello world");
     const clonedBuffer = structuredClone(buffer);
-    assert.deepEqual(clonedBuffer.buffer, buffer.buffer);
+    expect(clonedBuffer.buffer).toEqual(buffer.buffer)
     buffer.set([1, 2, 3, 4, 5, 6, 7, 8]);
     assert.notDeepStrictEqual(clonedBuffer, buffer);
   });

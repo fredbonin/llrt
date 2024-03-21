@@ -18,8 +18,8 @@ describe("process", () => {
   });
 
   it("should have a process argv", () => {
-    assert.deepEqual(defaultImport.argv, process.argv);
-    assert.deepEqual(namedImport.argv, process.argv);
+    expect(defaultImport.argv).toEqual(process.argv)
+    expect(namedImport.argv).toEqual(process.argv)
   });
 
   it("should have a process platform", () => {

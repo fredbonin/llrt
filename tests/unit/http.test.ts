@@ -73,7 +73,7 @@ describe("Request", () => {
   it("should set the headers to an empty object by default", () => {
     const request = new Request("https://example.com");
     const headers = new Headers();
-    assert.deepEqual(request.headers.entries(), headers.entries());
+    expect(request.headers.entries()).toEqual(headers.entries())
   });
 
   it("should set the headers to the provided value", () => {
@@ -170,11 +170,11 @@ describe("Response class", () => {
   it("should clone the response with the clone() method", () => {
     const response = new Response("Original response");
     const clonedResponse = response.clone();
-    assert.deepEqual(response.body, clonedResponse.body);
+    expect(response.body).toEqual(clonedResponse.body)
     expect(response.url).toEqual(clonedResponse.url)
     expect(response.status).toEqual(clonedResponse.status)
     expect(response.statusText).toEqual(clonedResponse.statusText)
-    assert.deepEqual(response.headers, clonedResponse.headers);
+    expect(response.headers).toEqual(clonedResponse.headers)
     expect(response.type).toEqual(clonedResponse.type)
     expect(response.ok).toEqual(clonedResponse.ok)
     expect(response.bodyUsed).toEqual(clonedResponse.bodyUsed)
@@ -284,13 +284,13 @@ describe("URLSearchParams class", () => {
   it("should return an array of all values of the parameter if it exists", () => {
     const paramsString = "topic=api&a=1&a=2&a=3";
     const searchParams = new URLSearchParams(paramsString);
-    assert.deepEqual(searchParams.getAll("a"), ["1", "2", "3"]);
+    expect(searchParams.getAll("a")).toEqual(["1", "2", "3"])
   });
 
   it("should return an empty array if the parameter doesn't exist", () => {
     const paramsString = "topic=api&a=1&a=2&a=3";
     const searchParams = new URLSearchParams(paramsString);
-    assert.deepEqual(searchParams.getAll("foo"), []);
+    expect(searchParams.getAll("foo")).toEqual([])
   });
 
   it("should add the parameter to the end of the query string", () => {
