@@ -124,7 +124,7 @@ describe("Response class", () => {
     const response = new Response();
     expect(response.status).toEqual(200)
     expect(response.statusText).toEqual("OK")
-    assert.ok(response.headers instanceof Headers);
+    expect(response.headers instanceof Headers).toBeTruthy();
     expect(response.body).toEqual(null)
   });
 
@@ -182,12 +182,12 @@ describe("Response class", () => {
 
   it("should create a Response object with an ok status for status codes in the range 200-299", () => {
     const response = new Response("Success", { status: 204 });
-    assert.ok(response.ok);
+    expect(response.ok).toBeTruthy();
   });
 
   it("should create a Response object with not-ok status for status codes outside the range 200-299", () => {
     const response = new Response("Error", { status: 404 });
-    assert.ok(!response.ok);
+    expect(!response.ok).toBeTruthy();
   });
 });
 
@@ -258,19 +258,19 @@ describe("URLSearchParams class", () => {
   it("should have a parameter if it exists", () => {
     const paramsString = "topic=api&a=1&a=2&a=3";
     const searchParams = new URLSearchParams(paramsString);
-    assert.ok(searchParams.has("topic"));
+    expect(searchParams.has("topic")).toBeTruthy();
   });
 
   it("should not have a parameter if it doesn't exist", () => {
     const paramsString = "topic=api&a=1&a=2&a=3";
     const searchParams = new URLSearchParams(paramsString);
-    assert.ok(!searchParams.has("foo"));
+    expect(!searchParams.has("foo")).toBeTruthy();
   });
 
   it("should return the value of the parameter if it exists", () => {
     const paramsString = "topic=api&a=1&a=2&a=3";
     const searchParams = new URLSearchParams(paramsString);
-    assert.ok(searchParams.get("topic") === "api");
+    expect(searchParams.get("topic") === "api").toBeTruthy();
   });
 
   it("should return null if the parameter doesn't exist", () => {
@@ -367,7 +367,7 @@ describe("Blob class", () => {
 
     expect(blob.type).toEqual("")
     if (process.platform != "win32") {
-      assert.ok(blob.size < text.length);
+      expect(blob.size < text.length).toBeTruthy();
       expect(await blob.text()).toEqual(text.replace(/\r\n/g, "\n"))
     }
   });
@@ -378,7 +378,7 @@ describe("Blob class", () => {
 
     const arrayBuffer = await blob.arrayBuffer();
 
-    assert.ok(arrayBuffer instanceof ArrayBuffer);
+    expect(arrayBuffer instanceof ArrayBuffer).toBeTruthy();
   });
 
   it("should return a DataView with the slice method", () => {
@@ -387,7 +387,7 @@ describe("Blob class", () => {
 
     const slicedBlob = blob.slice(0, 5, "text/plain");
 
-    assert.ok(slicedBlob instanceof Blob);
+    expect(slicedBlob instanceof Blob).toBeTruthy();
     expect(slicedBlob.size).toEqual(5)
     expect(slicedBlob.type).toEqual("text/plain")
   });

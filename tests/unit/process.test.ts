@@ -33,8 +33,8 @@ describe("process", () => {
   });
 
   it("should have a process hrtime", () => {
-    assert.ok(defaultImport.hrtime.bigint() > 0);
-    assert.ok(namedImport.hrtime.bigint() > 0);
+    expect(defaultImport.hrtime.bigint() > 0).toBeTruthy();
+    expect(namedImport.hrtime.bigint() > 0).toBeTruthy();
   });
 
   it("should have a process release", () => {

@@ -7,7 +7,7 @@ describe("timers", () => {
       setTimeout(resolve, 10);
     });
     const end = Date.now();
-    assert.ok(end - start >= 10);
+    expect(end - start >= 10).toBeTruthy();
   });
 
   it("should set nested timeout", (done) => {
@@ -34,7 +34,7 @@ describe("timers", () => {
     });
     const end = Date.now();
 
-    assert.ok(end - start >= 10);
+    expect(end - start >= 10).toBeTruthy();
     expect(status).toEqual("cleared")
   });
 
@@ -51,7 +51,7 @@ describe("timers", () => {
       }, 5);
     });
     const end = Date.now();
-    assert.ok(end - start >= 10);
+    expect(end - start >= 10).toBeTruthy();
     expect(count).toEqual(5)
   });
 
@@ -69,7 +69,7 @@ describe("timers", () => {
       setTimeout(resolve, 20);
     });
     const end = Date.now();
-    assert.ok(end - start > 10);
+    expect(end - start > 10).toBeTruthy();
     expect(count).toEqual(2)
   });
 

@@ -17,11 +17,11 @@ it("should use custom EventEmitter", () => {
     expect(a).toEqual("a")
     expect(b).toEqual("b")
     // @ts-ignore
-    assert.ok(this instanceof MyEmitter);
+    expect(this instanceof MyEmitter).toBeTruthy();
     // @ts-ignore
-    assert.ok(this === myEmitter);
+    expect(this === myEmitter).toBeTruthy();
     // @ts-ignore
-    assert.ok(this !== myEmitter2);
+    expect(this !== myEmitter2).toBeTruthy();
     called++;
   });
 

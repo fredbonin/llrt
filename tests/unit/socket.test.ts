@@ -85,7 +85,7 @@ describe("error handling", () => {
     const server = net.createServer((socket) => {
       setTimeout(() => {
         socket.write("hello", (err) => {
-          assert.ok(err);
+          expect(err).toBeTruthy();
           server.close();
           done();
         });

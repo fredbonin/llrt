@@ -30,7 +30,7 @@ describe("fetch", () => {
     const res = await fetch(url);
 
     expect(res.status).toEqual(200)
-    assert.ok(res.headers.get("content-type")?.startsWith("text/html"));
+    expect(res.headers.get("content-type")?.startsWith("text/html")).toBeTruthy();
   });
 
   it("should fetch a website in parallel", async () => {
