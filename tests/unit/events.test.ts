@@ -83,9 +83,9 @@ it("should handle crash in event handler", () => {
     throw new Error("error");
   });
 
-  assert.throws(() => {
+  expect(() => {
     emitter.emit("data", 123);
-  });
+  }).toThrow();
 });
 
 it("should handle events emitted recursively", (done) => {

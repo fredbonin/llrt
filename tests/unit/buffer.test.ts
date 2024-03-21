@@ -187,19 +187,19 @@ describe("Buffer.concat", () => {
   });
 
   it("should throw an error when the list contains a non-buffer", () => {
-    assert.throws(() => {
+    expect(() => {
       const buffer1 = Buffer.from("Hello");
       const invalidBuffer = "InvalidBuffer";
       Buffer.concat([buffer1, invalidBuffer as any]);
-    }, TypeError);
+    }).toThrow(TypeError);
   });
 
   it("should throw an error when the totalLength is too large", () => {
-    assert.throws(() => {
+    expect(() => {
       const buffer1 = Buffer.from("Hello");
       const buffer2 = Buffer.alloc(2 ** 32); // 1 GB buffer
       Buffer.concat([buffer1, buffer2], 2 ** 33); // totalLength exceeding maximum allowed
-    }, RangeError);
+    }).toThrow(RangeError);
   });
 
   it("should concatenate buffers with specified totalLength", () => {

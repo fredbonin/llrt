@@ -211,9 +211,9 @@ describe("URL class", () => {
   });
 
   it("should throw an error for an invalid URL", () => {
-    assert.throws(() => {
+    expect(() => {
       new URL("not-a-url");
-    }, /Invalid URL/);
+    }).toThrow(/Invalid URL/);
   });
 
   it("should return the URL as a string", () => {
@@ -378,8 +378,8 @@ describe("Blob class", () => {
     const blob = new Blob(blobData, { type: "text/plain" });
 
     const arrayBuffer = await blob.arrayBuffer();
-
-    expect(arrayBuffer instanceof ArrayBuffer).toBeTruthy();
+    
+    expect(arrayBuffer).toBeInstanceOf(ArrayBuffer);
   });
 
   it("should return a DataView with the slice method", () => {

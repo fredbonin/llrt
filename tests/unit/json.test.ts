@@ -6,14 +6,14 @@ describe("JSON Parsing", () => {
 
   it("should handle invalid JSON", () => {
     const invalidJsonString = '{key: "value"}';
-    assert.throws(() => {
+    expect(() => {
       JSON.parse(invalidJsonString);
-    });
+    }).toThrow();
 
     const emptyJsonString = "";
-    assert.throws(() => {
+    expect(() => {
       JSON.parse(emptyJsonString);
-    });
+    }).toThrow();
   });
 
   it("should parse JSON with nested structures", () => {
@@ -92,9 +92,9 @@ describe("JSON Stringified", () => {
 
     recursiveData.nested.inner = recursiveData; // create self-reference
 
-    assert.throws(() => {
+    expect(() => {
       JSON.stringify(recursiveData);
-    });
+    }).toThrow();
   });
 
   it("Should stringify an object with default spacing", () => {
