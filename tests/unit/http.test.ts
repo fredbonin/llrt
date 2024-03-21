@@ -201,7 +201,8 @@ describe("URL class", () => {
   it("should create a copy of a valid URL", () => {
     const url: any = new URL("https://www.example.com");
     const url2 = new URL(url);
-    assert.notEqual(url, url2);
+    expect(url).toEqual(url2)
+    expect(url).not.toBe(url2)
   });
 
   it("should to append base to a url", () => {
@@ -321,7 +322,7 @@ describe("URLSearchParams class", () => {
     for (const p of searchParams) {
       arr.push(p);
     }
-    assert.deepEqual(arr, [
+    expect(arr).toEqual([
       ["a", "1"],
       ["a", "2"],
       ["a", "3"],

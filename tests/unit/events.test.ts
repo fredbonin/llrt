@@ -68,7 +68,7 @@ it("should prepend event listeners", async () => {
 
   myEmitter.emit("event");
 
-  assert.deepEqual(eventsArray, [
+  expect(eventsArray).toEqual([
     "even before that",
     "added to beginning",
     "added first",

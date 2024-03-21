@@ -57,7 +57,7 @@ describe("error handling", () => {
     const client = net
       .connect(nonExistentPort, "localhost")
       .on("error", (error) => {
-        assert(error instanceof Error);
+        expect(error).toBeInstanceOf(Error);
         client.end();
         done(); // Test passes if an error event is emitted
       });

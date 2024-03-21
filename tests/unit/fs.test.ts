@@ -29,10 +29,7 @@ describe("readdir", () => {
   it("should read a directory with recursive", async () => {
     const dir = await fs.readdir("fixtures/fs/readdir", { recursive: true });
     const compare = (a: string, b: string) => (a >= b ? 1 : -1);
-    assert.deepEqual(
-      dir.sort(compare),
-      ["recursive/readdir.js", "recursive", "readdir.js"].sort(compare)
-    );
+    expect(dir.sort(compare)).toEqual(["recursive/readdir.js", "recursive", "readdir.js"].sort(compare));
   });
 });
 
@@ -64,10 +61,7 @@ describe("readdirSync", () => {
     });
     const compare = (a: string | Buffer, b: string | Buffer): number =>
       a >= b ? 1 : -1;
-    assert.deepEqual(
-      dir.sort(compare),
-      ["recursive/readdir.js", "recursive", "readdir.js"].sort(compare)
-    );
+    expect(dir.sort(compare)).toEqual(["recursive/readdir.js", "recursive", "readdir.js"].sort(compare));
   });
 });
 
