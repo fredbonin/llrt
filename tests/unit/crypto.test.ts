@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import nodeCrypto from 'node:crypto';
 
 describe("Hashing", () => {
   it("should hash to sha256 with b64 encoding", () => {
@@ -80,5 +81,11 @@ describe("random", () => {
     const buffer = crypto.randomBytes(16);
     expect(buffer).toBeInstanceOf(Buffer);
     expect(buffer.length).toEqual(16);
+  });
+
+  it("should generate a random int using randomInt", () => {
+    const randomInt = nodeCrypto.randomInt(16);
+    console.log(randomInt)
+    expect(typeof randomInt).toEqual("number");
   });
 });

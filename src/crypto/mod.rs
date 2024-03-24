@@ -62,6 +62,12 @@ fn get_random_bytes(ctx: Ctx, length: usize) -> Result<Value> {
     Buffer(random_bytes).into_js(&ctx)
 }
 
+fn get_random_int(_ctx: Ctx, length: usize) -> Result<u8> {
+    let mut vec = vec![0; length];
+    SYSTEM_RANDOM.fill(&mut vec).unwrap();
+    Ok(vec[0])
+}
+
 fn random_fill<'js>(ctx: Ctx<'js>, obj: Object<'js>, args: Rest<Value<'js>>) -> Result<()> {
     let args_iter = args.0.into_iter();
     let mut args_iter = args_iter.rev();
@@ -128,6 +134,7 @@ impl ModuleDef for CryptoModule {
         declare.declare("Md5")?;
         declare.declare("randomBytes")?;
         declare.declare("randomUUID")?;
+        declare.declare("randomInt")?;
         declare.declare("randomFillSync")?;
         declare.declare("randomFill")?;
 
@@ -166,6 +173,7 @@ impl ModuleDef for CryptoModule {
             default.set("createHash", Func::from(Hash::new))?;
             default.set("createHmac", Func::from(Hmac::new))?;
             default.set("randomBytes", Func::from(get_random_bytes))?;
+            default.set("randomInt", Func::from(get_random_int))?;
             default.set("randomUUID", Func::from(uuidv4))?;
             default.set("randomFillSync", Func::from(random_fill_sync))?;
             default.set("randomFill", Func::from(random_fill))?;
