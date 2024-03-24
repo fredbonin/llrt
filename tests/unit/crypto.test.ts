@@ -84,8 +84,19 @@ describe("random", () => {
   });
 
   it("should generate a random int using randomInt", () => {
-    const randomInt = nodeCrypto.randomInt(16);
-    console.log(randomInt)
-    expect(typeof randomInt).toEqual("number");
+    // Do it 10 times, to make sure we respect min and max
+    for (const number of [...Array(10).keys()]) {
+      const randomInt = nodeCrypto.randomInt(Number.MAX_SAFE_INTEGER-1,Number.MAX_SAFE_INTEGER);
+      expect(typeof randomInt).toEqual("number");
+      expect(Number.MAX_SAFE_INTEGER-1).toEqual(randomInt);
+      expect(typeof randomInt).toEqual("number");
+    }
+
+    // Do it 100 times to make sure we never get values outside the range
+    for (const number of [...Array(100).keys()]) {
+      const randomInt = nodeCrypto.randomInt(0,5);
+      expect(randomInt).toBeLessThan(5);
+      expect(randomInt).toBeGreaterThanOrEqual(0);
+    }
   });
 });
